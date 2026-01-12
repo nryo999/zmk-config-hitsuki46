@@ -2,17 +2,11 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 
-// Enable and configure trackball_left_listener for left side (scroll only)
+// Disable trackball_left_listener on peripheral (left) side
+// The trackball data will be automatically sent to central (right) side
+// and processed there by the listener
 &trackball_left_listener {
-    status = "okay";
-    device = <&trackball>;
-
-    // Left trackball: always in scroll mode with proper scaling and transform
-    input-processors =
-        <&zip_x_scaler 0 1>,
-        <&zip_y_scaler 1 15>,
-        <&zip_xy_to_scroll_mapper>,
-        <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
+    status = "disabled";
 };
 
 &kscan0 {
