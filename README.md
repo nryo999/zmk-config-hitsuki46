@@ -35,33 +35,18 @@ hitsuki46は46キーの分割キーボードで、両手にトラックボール
 // Trackball Mode Configuration
 // 0 = CURSOR mode (mouse cursor movement)
 // 1 = SCROLL mode (scroll operation)
-// 2 = GESTURE mode (up/down=scroll, left=backspace, right=delete)
 //=============================================================================
-#define LEFT_TRACKBALL_MODE  1   // 左トラックボール (0/1/2)
-#define RIGHT_TRACKBALL_MODE 0   // 右トラックボール (0/1/2)
+#define LEFT_TRACKBALL_MODE  1   // 左トラックボール (0/1)
+#define RIGHT_TRACKBALL_MODE 0   // 右トラックボール (0/1)
 //=============================================================================
 ```
 
 - **値を`0`に設定**: カーソルモード（マウスカーソル操作 + Layer 5でスクロール）
 - **値を`1`に設定**: スクロールモード（常にスクロール操作）
-- **値を`2`に設定**: ジェスチャーモード（上下=スクロール、左=Backspace、右=Delete）
 
 変更後はファームウェアを再ビルドしてください。
 
-### ジェスチャーモード詳細
-
-ジェスチャーモード（モード2）では、トラックボールの方向入力がキー入力に変換されます：
-
-| 方向 | 動作 |
-|------|------|
-| 上 | スクロールアップ |
-| 下 | スクロールダウン |
-| 左 | Backspace |
-| 右 | Delete |
-
-ジェスチャーの設定は`hitsuki46_R.overlay`内の`&zip_mouse_gesture`セクションで変更できます。
-
-### 左手側 (デフォルト: スクロールモード)
+### 左手側 (デフォルト: カーソルモード)
 - スクロールモード時: センサーを動かすとスクロール操作
 - カーソルモード時: センサーを動かすと自動的にマウスレイヤー(Layer 1)へ移行
 
@@ -163,7 +148,6 @@ Bluetooth設定レイヤー
 - [zmk-ws2812-driver](https://github.com/gohanda11/zmk-ws2812-driver) - LEDドライバー
 - [zmk-feature-non-lipo-battery-management](https://github.com/sekigon-gonnoc/zmk-feature-non-lipo-battery-management) - 非LiPoバッテリー管理
 - [zmk-feature-xy_clipper](https://github.com/iwk7273/zmk-feature-xy_clipper) - 斜め入力防止フィルター
-- [zmk-mouse-gesture](https://github.com/kot149/zmk-mouse-gesture) - マウスジェスチャー（方向入力→キー変換）
 
 ## キーマップ
 

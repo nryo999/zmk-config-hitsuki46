@@ -1,19 +1,16 @@
 #include "hitsuki46.dtsi"
 #include <dt-bindings/zmk/input_transform.h>
 #include <dt-bindings/input/input-event-codes.h>
-#include <dt-bindings/zmk/keys.h>
 #include <input/processors.dtsi>
-#include <mouse-gesture.dtsi>
 #include <dt-bindings/zmk/pointing.h>
 
 //=============================================================================
 // Trackball Mode Configuration
 // 0 = CURSOR mode (mouse cursor movement)
 // 1 = SCROLL mode (scroll operation)
-// 2 = GESTURE mode (up/down=scroll, left=backspace, right=delete)
 //=============================================================================
-#define LEFT_TRACKBALL_MODE  0   // Left trackball mode (0/1/2)
-#define RIGHT_TRACKBALL_MODE 2   // Right trackball mode (0/1/2)
+#define LEFT_TRACKBALL_MODE  1   // Left trackball mode (0/1)
+#define RIGHT_TRACKBALL_MODE 0   // Right trackball mode (0/1)
 //=============================================================================
 
 &default_transform {
@@ -44,45 +41,6 @@
         invert-x = <0>;
         invert-y = <0>;
     };
-
-#if LEFT_TRACKBALL_MODE == 2 || RIGHT_TRACKBALL_MODE == 2
-    // Auto-enable gesture mode when layer 0 is activated
-    layer_listeners {
-        compatible = "zmk,layer-listeners";
-
-        gesture_mode_auto_enable {
-            layers = <0>;
-            bindings = <&mouse_gesture_on &none>;
-        };
-    };
-#endif
-};
-
-// Mouse Gesture Configuration for GESTURE mode
-// Up/Down = Scroll, Left = Backspace, Right = Delete
-&zip_mouse_gesture {
-    stroke-size = <200>;
-    enable-eager-mode;
-
-    gesture_scroll_up {
-        pattern = <GESTURE_UP>;
-        bindings = <&msc SCRL_UP>;
-    };
-
-    gesture_scroll_down {
-        pattern = <GESTURE_DOWN>;
-        bindings = <&msc SCRL_DOWN>;
-    };
-
-    gesture_backspace {
-        pattern = <GESTURE_LEFT>;
-        bindings = <&kp BACKSPACE>;
-    };
-
-    gesture_delete {
-        pattern = <GESTURE_RIGHT>;
-        bindings = <&kp DELETE>;
-    };
 };
 
 // Left trackball listener (from peripheral)
@@ -92,10 +50,7 @@
         status = "okay";
         device = <&trackball_left_split>;
 
-#if LEFT_TRACKBALL_MODE == 2
-        // GESTURE MODE: Up/Down=scroll, Left=backspace, Right=delete
-        input-processors = <&zip_mouse_gesture>;
-#elif LEFT_TRACKBALL_MODE == 1
+#if LEFT_TRACKBALL_MODE == 1
         // SCROLL MODE: Always scroll
         input-processors =
             <&xy_clipper>,
@@ -126,10 +81,7 @@
     status = "okay";
     device = <&trackball>;
 
-#if RIGHT_TRACKBALL_MODE == 2
-    // GESTURE MODE: Up/Down=scroll, Left=backspace, Right=delete
-    input-processors = <&zip_mouse_gesture>;
-#elif RIGHT_TRACKBALL_MODE == 1
+#if RIGHT_TRACKBALL_MODE == 1
     // SCROLL MODE: Always scroll
     input-processors =
         <&xy_clipper>,
