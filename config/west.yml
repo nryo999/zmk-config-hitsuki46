@@ -11,8 +11,6 @@ manifest:
       url-base: https://github.com/badjeff
     - name: iwk7273
       url-base: https://github.com/iwk7273
-    - name: nryo999
-      url-base: https://github.com/nryo999
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -25,7 +23,7 @@ manifest:
       remote: sekigon-gonnoc
       revision: main
     - name: zmk-ws2812-driver
-      remote: nryo999
+      remote: gohanda11
       revision: main
     - name: zmk-feature-xy_clipper
       remote: iwk7273
