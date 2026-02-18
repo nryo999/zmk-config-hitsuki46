@@ -21,7 +21,7 @@
 
         tab {
             bindings = <&kp TAB>;
-            key-positions = <11 12>;
+            key-positions = <13 14>;
         };
 
         shift_tab {
@@ -42,6 +42,21 @@
         eq {
             bindings = <&kp EQUAL>;
             key-positions = <24 25>;
+        };
+
+        kana {
+            bindings = <&kp LANG1>;
+            key-positions = <19 20>;
+        };
+
+        en {
+            bindings = <&kp LANGUAGE_2>;
+            key-positions = <15 16>;
+        };
+
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <1 2>;
         };
     };
 
